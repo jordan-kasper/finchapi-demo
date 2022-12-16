@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+    {% for item in data%}
+    <center><h3>{{item.id}} </h3></br>
+        <b>Pay Date :</b> {{item.pay_date}} </br></br></center>
+        <b> User IDs </b> </br>
+        {% for item in item.individual_ids %}
+        {{item}} </br>
+        {% endfor %}</br>
+        <b>Debit Date </b> {{item.debit_date}} </br>
+        <b>Gross Pay</b> {{item.gross_pay.amount}} </br>
+        <b>Net Pay </b> {{item.net_pay.amount}} </br>
+        <b>Company Debit </b> {{item.company_debit.amount}} </br>
+        <b>Start Date</b> {{item.pay_period.start_date}}  <b>End Date</b> {{item.pay_period.end_date}}</br>
+        <b>Employee Taxes </b> {{item.employee_taxes.amount}} </br>
+        <b>Employer Taxes </b> {{item.employer_taxes.amount}} </br></br>
+
+    {% endfor %}
+
+
+
+{% endblock %}

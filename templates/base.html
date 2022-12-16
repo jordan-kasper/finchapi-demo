@@ -65,6 +65,8 @@
     
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/5.2/examples/pricing/pricing.css" rel="stylesheet">
+    <script src="https://prod-cdn.tryfinch.com/v1/connect.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
   </head>
   <body>
 
@@ -79,7 +81,37 @@
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <a class="me-3 py-2 text-dark text-decoration-none" href="/company">Company</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="/people">Directory</a>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="#">Payroll</a>
+        <a class="me-3 py-2 text-dark text-decoration-none" href="/payroll">Payroll</a>
+        <button id="connect-button">Open Finch Connect</button>
+        <script>
+          const button = document.getElementById('connect-button');
+          const onSuccess = ({code}) => {
+            console.log({code})
+            $.ajax({
+              url:"/getCode",
+              type:"POST",
+              contentType: "application/json",
+              data: JSON.stringify({code})});
+          }
+          const onError = ({ errorMessage }) => {
+            console.error(errorMessage);
+          }
+          const onClose = () => {
+            console.log('Connect closed');
+          }
+          const connect = FinchConnect.initialize({
+            clientId: '07de7bbc-b8aa-4f35-82cd-4bf934ad3da1',
+            products: ['company', 'directory', 'employment'],
+            sandbox: true,
+            manual: false,
+            onSuccess,
+            onError,
+            onClose,
+          });
+          button.addEventListener('click', () => {
+            connect.open();
+          })
+        </script>
       </nav>
     </div>
   </header>
