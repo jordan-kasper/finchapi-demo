@@ -1,4 +1,2 @@
-# flask-bootstrap
-Basic flask app using twitter bootstrap template
-Screenshot
-![screenshot](https://raw.githubusercontent.com/anubhavsinha/flask-bootstrap/master/screenshot.png "screenshot")
+# Finch API Demo
+Simple demo using Finch API and Finch Connect to show how data might be pulled and displayed.
